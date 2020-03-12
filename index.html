@@ -1,0 +1,297 @@
+<html>
+
+  <head>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/89944e7bf0.js"
+            crossorigin="anonymous"></script>
+
+    <style type="text/css">
+      .visible-success {
+        display: none;
+      }
+
+      .success .visible-success {
+        display: inherit;
+      }
+
+      .acc {
+        background-color: white;
+        margin-bottom: 10px;
+        box-shadow: none;
+        border: none;
+      }
+
+      .acc .card-header {
+        border-radius: 2px;
+        background-color: white;
+        border: 1px solid black;
+        box-shadow: none;
+      }
+
+      .acc .card-header a {
+        color: black;
+        font-weight: 600;
+      }
+
+      .acc .mb-0>a {
+        display: block;
+        position: relative;
+      }
+
+      .acc .mb-0>a:after {
+        content: "\f078";
+        /* fa-chevron-down */
+        font-family: 'FontAwesome';
+        position: absolute;
+        right: 0;
+      }
+
+      .acc .mb-0>a[aria-expanded="true"]:after {
+        content: "\f077";
+        /* fa-chevron-up */
+      }
+    </style>
+
+  </head>
+
+  <body class="ml-5 mr-5 ">
+
+    <div class="card my-5 border-primary">
+      <div class="card-header bg-primary ">
+        <h5 class="mb-0 text-white lh-100">
+          <i class="fas fa-file-import mr-2"></i>
+          Connect this Airtable directly to your company</h5>
+      </div>
+      <div class="card-body">
+
+        <p>Get things done faster!</span></p>
+        <p class="mb-3 preclick">
+          <a href="#"
+             id="import"
+             disabled="disabled"
+             class="btn btn-primary mr-2">
+            Import from Google
+          </a>
+          <span id="primary">
+            or
+            <a href="#"
+               class="btn btn-outline-primary ml-2">
+              Start from Scratch
+            </a>
+          </span>
+          <span id="wait"
+                style="display: none;">
+            <span class="spinner-border spinner-border-sm mr-1 text-primary"
+                  role="status">
+              <span class="sr-only">Loading...</span></span>
+            <strong class="text-primary">we’re on it—hang tight!</strong>
+          </span>
+        </p>
+        <p class="small my-0 py-0 preclick">
+          Can I use a Microsoft account?
+        </p>
+        <div id="wall">
+          <div id="accordion"
+               class="mt-4 disabled">
+            <div class="card acc">
+              <div class="card-header"
+                   id="h-employees">
+                <h5 class="mb-0">
+                  <a class="collapsed"
+                     role="button"
+                     data-toggle="collapse"
+                     href="#c-employees"
+                     aria-expanded="false"
+                     aria-controls="c-employees">
+
+                    <i class="far fa-pause-circle mr-2"></i> <span id="hc-employees">Find coworkers in the company
+                      directory</span>
+                  </a>
+                </h5>
+              </div>
+              <div id="c-employees"
+                   class="collapse"
+                   data-parent="#accordion"
+                   aria-labelledby="h-employees">
+                <div class="card-body">
+                  <div class="visible-success alert alert-success"
+                       role="alert">
+                    Here are your direct reports, click the ones you’d like to set up:
+                  </div>
+                  <div class="form-group"
+                       id="directs">
+                    We’ll look at your company’s org chart and propose coworkers that you work with.
+                  </div>
+                  <div class="visible-succedss">
+                    <div class="btn-toolbar justify-content-between"
+                         role="toolbar"
+                         aria-label="Toolbar with button groups">
+                      <button type="button"
+                              id="directs-more"
+                              data-list="#directs"
+                              class="more-btn btn btn-outline-primary">Show More &darr;</button>
+                      <button type="button"
+                              data-destination="#c-contacts"
+                              class="btn moveon btn-primary">Continue &darr;</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="card acc">
+              <div class="card-header"
+                   id="h-contacts">
+                <h5 class="mb-0">
+                  <a class="collapsed"
+                     role="button"
+                     data-toggle="collapse"
+                     href="#c-contacts"
+                     aria-expanded="false"
+                     aria-controls="c-contacts">
+                    <i class="far fa-pause-circle mr-2"></i>
+                    <span id="hc-employees">Review your frequent contacts</span>
+                  </a>
+                </h5>
+              </div>
+              <div id="c-contacts"
+                   class="collapse"
+                   data-parent="#accordion"
+                   aria-labelledby="h-contacts">
+                <div class="card-body">
+                  <div class="form-group"
+                       id="contacts">
+                    We’ll suggest people you've been emailing most frequently.
+                  </div>
+                  <div class="visible-succedss">
+                    <div class="btn-toolbar justify-content-between"
+                         role="toolbar"
+                         aria-label="Toolbar with button groups">
+                      <button type="button"
+                              id="contacts-more"
+                              data-list="#contacts"
+                              class="more-btn btn btn-outline-primary">Show More &darr;</button>
+                      <button type="button"
+                              class="btn btn-primary">Review Import &rarr;</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var employeeList = [];
+      var contactList = [];
+
+      function personItem_(name, email, context = '') {
+
+        if (name == '' && email != '') {
+          email = name;
+          email = '';
+        }
+        return '<label class="d-block"><input type="checkbox" class="mr-1" name="person"> ' +
+          name + '<span class="text-muted"> &mdash; ' + email + context +
+          '</span></label>';
+      }
+
+      function onSuccess(payload) {
+        $("body").addClass("success");
+        $("#import").removeClass("disabled");
+        $(".preclick").hide();
+        $(".acc h5 i").toggleClass("fa-cog far fas fa-spin fa-pause-circle");
+
+        employeeList = payload.employeeList;
+        loadList(employeeList, '#directs', 10, true);
+        contactList = payload.contactList;
+        loadList(contactList, '#contacts', 10, true);
+
+        $('#c-employees').collapse('show');
+      }
+
+      function loadList(whatList, whatTarget, howMany, firstLoad = false) {
+
+        // Hacky
+        if (whatList == '#directs') {
+          whatList = employeeList;
+        }
+        if (whatList == '#contacts') {
+          whatList = contactList;
+        }
+
+        template = '';
+        for (i = 0; i <= Math.min(howMany, whatList.length); i++) {
+          thePerson = whatList.shift();
+          template += personItem_(thePerson.name, thePerson.email, (whatTarget == '#false' ? " <span class=\"pull-right\"><i class=\"fa fa-mail-bulk\"></i> " + thePerson.count + "</span>" : ""));
+        }
+
+        keepHtml = '';
+        if (!firstLoad) {
+          keepHtml = $(whatTarget).html();
+        }
+        $(whatTarget).html(
+          keepHtml +
+          template
+        );
+
+        console.log(whatList);
+
+        if (whatList.length > 0) {
+          $(whatTarget + "-more").html("Show 10 more (of " + whatList.length + ")");
+        } else {
+          if (firstLoad) {
+            $(whatTarget + "-more").addClass("invisible");
+          }
+          $(whatTarget + "-more").html("No more").addClass("disabled", "disabled");
+        }
+
+      }
+
+      $(function () {
+        $("#import").removeAttr("disabled");
+      });
+
+      $(".moveon").on("click", function () {
+        $($(this).data("destination")).collapse('show');
+      });
+
+      $(".more-btn").on("click", function () {
+        console.log("Clicked on ", this, $(this));
+        loadList($(this).data('list'), '#contacts', 5);
+        $('html, body').animate({
+          scrollTop: $(this).offset().top
+        }, 1000);
+
+      });
+
+      $("#import").on("click", function () {
+
+        $("#import").addClass("disabled")
+        $("#primary").hide();
+        $("#wait").show();
+
+        $(".acc h5 i").toggleClass("fa-cog far fas fa-spin fa-pause-circle");
+
+        google.script.run.withSuccessHandler(onSuccess)
+          .getData();
+      });
+    </script>
+  </body>
+
+</html>
