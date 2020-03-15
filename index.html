@@ -203,7 +203,7 @@
       function personItem_(name, email, context = '') {
 
         if (name == '' && email != '') {
-          email = name;
+          name = email;
           email = '';
         }
         return '<label class="d-block"><input type="checkbox" class="mr-1" name="person"> ' +
